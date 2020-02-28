@@ -3,22 +3,24 @@ package ch.hearc;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+@Controller
 public class UserController {
 	
 	@Autowired 
-	UserRepository personRepository;
+	UserRepository userRepository;
 	
-	@GetMapping("/")
-	public String index(Model model) {
-		model.addAttribute("person", new User());
-		
-		return "index";
-	}
+//	@GetMapping("/")
+//	public String index(Model model) {
+//		model.addAttribute("user", new User());
+//		
+//		return "index";
+//	}
 	
 //	@GetMapping("/all")
 //	public  String getAll(Map<String, Object> model) {
@@ -28,19 +30,19 @@ public class UserController {
 //		return "liste";
 //	}
 //			
-	@GetMapping("/form")
-	public String personForm(Model model) {
-		model.addAttribute("person", new User());
+	@GetMapping("/user/create")
+	public String userForm(Model model) {
+		model.addAttribute("user", new User());
 		
-		return "person-form";
+		return "user-form";
 	}
 		
-	@PostMapping("/insert")
-	public String insertPerson(@ModelAttribute User person, Model model) {
+	@PostMapping("/user/insert")
+	public String insertUser(@ModelAttribute User user, Model model) {
 			
-		personRepository.save(person);
+		userRepository.save(user);
 		
-		return "person-form";
+		return "user-form";
 		
 	}
 

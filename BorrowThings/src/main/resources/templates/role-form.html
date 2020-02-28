@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Create Role</title>
+</head>
+<body>
+	<h1>Create Role</h1>
+    <form action="#" th:action="@{/role/insert}" th:object="${role}" method="post">
+    	<p>Name: <input type="text" th:field="*{name}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+    
+</body>
+</html>
