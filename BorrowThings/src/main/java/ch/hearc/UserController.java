@@ -1,6 +1,6 @@
 package ch.hearc;
 
-import java.util.Map;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -8,13 +8,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import org.springframework.stereotype.Controller;
+
+@Controller
 public class UserController {
 	
 	@Autowired 
 	UserRepository personRepository;
 	
 	@GetMapping("/")
-	public String index(Model model) {
+	public String index(final Model model) {
 		model.addAttribute("person", new User());
 		
 		return "index";
@@ -29,14 +32,14 @@ public class UserController {
 //	}
 //			
 	@GetMapping("/form")
-	public String personForm(Model model) {
+	public String personForm(final Model model) {
 		model.addAttribute("person", new User());
 		
 		return "person-form";
 	}
 		
 	@PostMapping("/insert")
-	public String insertPerson(@ModelAttribute User person, Model model) {
+	public String insertPerson(@ModelAttribute final User person, final Model model) {
 			
 		personRepository.save(person);
 		
