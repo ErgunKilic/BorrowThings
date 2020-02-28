@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-public class PersonController {
+public class UserController {
 	
 	@Autowired 
-	PersonRepository personRepository;
+	UserRepository personRepository;
 	
 	@GetMapping("/")
 	public String index(Model model) {
-		model.addAttribute("person", new Person());
+		model.addAttribute("person", new User());
 		
 		return "index";
 	}
@@ -30,13 +30,13 @@ public class PersonController {
 //			
 	@GetMapping("/form")
 	public String personForm(Model model) {
-		model.addAttribute("person", new Person());
+		model.addAttribute("person", new User());
 		
 		return "person-form";
 	}
 		
 	@PostMapping("/insert")
-	public String insertPerson(@ModelAttribute Person person, Model model) {
+	public String insertPerson(@ModelAttribute User person, Model model) {
 			
 		personRepository.save(person);
 		

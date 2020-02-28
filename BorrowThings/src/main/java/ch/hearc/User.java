@@ -9,17 +9,17 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Person")
-public class Person {
+public class User {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column
     private Integer id;
 
 	@Column
-	private String firstname;
+	private String username;
 	
 	@Column
-	private String lastname;
+	private String password;
 	
 //	@Column
 //	private Integer role;
