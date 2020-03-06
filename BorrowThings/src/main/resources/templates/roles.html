@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
+<meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-CouCOu
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">Name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="role: ${roles}">
+				<td th:text="${role.id}" />
+				<td th:text="${role.name}" />
+			</tr>
+		</tbody>
+	</table>
+
 </body>
 </html>

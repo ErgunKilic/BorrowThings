@@ -14,6 +14,8 @@ public class UserController {
 	
 	@Autowired 
 	UserRepository userRepository;
+	@Autowired 
+	RoleRepository roleRepository;
 	
 //	@GetMapping("/")
 //	public String index(Model model) {
@@ -22,24 +24,30 @@ public class UserController {
 //		return "index";
 //	}
 	
-//	@GetMapping("/all")
-//	public  String getAll(Map<String, Object> model) {
-//		
-//		model.put("persons", personRepository.findAll());
-//		
-//		return "liste";
-//	}
-//			
+	@GetMapping("/user/all")
+	public  String getUsers(Map<String, Object> model) {
+		
+		model.put("users", userRepository.findAll());
+		
+		return "users";
+	}
+		
 	@GetMapping("/user/create")
 	public String userForm(Model model) {
 		model.addAttribute("user", new User());
-		
+		model.addAttribute("roles", roleRepository.findAll());
 		return "user-form";
 	}
 		
 	@PostMapping("/user/insert")
-	public String insertUser(@ModelAttribute User user, Model model) {
-			
+	public String insertUser(@ModelAttribute User user, Model model) {	
+		
+//		System.out.println(roleId);
+//		Role roleTmp = roleRepository.findById().get();
+		
+//		Role roleTmp = roleRepository.findById(user.getRole().getId()).get();
+//		user.setRole(roleRepository.findById(user.getRole().getId()).get());
+//		user.setRole(roleTmp);
 		userRepository.save(user);
 		
 		return "user-form";

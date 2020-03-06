@@ -1,10 +1,13 @@
 package ch.hearc;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -26,8 +29,8 @@ public class User {
 	private Boolean enabled;
 	
 	@OneToOne
+	@JoinColumn(name = "role_id", referencedColumnName = "id")	
 	private Role role;
-	
 	
 	public String getUsername() {
 		return username;
@@ -64,5 +67,4 @@ public class User {
 	public Integer getId() {
 		return id;
 	}
-	
 }
