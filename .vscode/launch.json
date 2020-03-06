@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-BorrowThingsApplication<BorrowThings>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "ch.hearc.BorrowThingsApplication",
+            "projectName": "BorrowThings",
+            "args": ""
+        }
+    ]
+}

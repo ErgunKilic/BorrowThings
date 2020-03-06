@@ -1,4 +1,4 @@
-package ch.hearc;
+package ch.hearc.model;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

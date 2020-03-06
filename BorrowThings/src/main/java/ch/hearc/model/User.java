@@ -1,4 +1,7 @@
-package ch.hearc;
+package ch.hearc.model;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -31,6 +35,9 @@ public class User {
 	@OneToOne
 	@JoinColumn(name = "role_id", referencedColumnName = "id")	
 	private Role role;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<UserItem> userItems = new HashSet<>();
 	
 	public String getUsername() {
 		return username;
