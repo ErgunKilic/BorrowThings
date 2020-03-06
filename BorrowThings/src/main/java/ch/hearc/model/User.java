@@ -1,12 +1,9 @@
-package ch.hearc;
+package ch.hearc.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name="users")
@@ -27,7 +24,9 @@ public class User {
 	
 	@OneToOne
 	private Role role;
-	
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<UserItem> userItems = new HashSet<>();
 	
 	public String getUsername() {
 		return username;
@@ -64,5 +63,5 @@ public class User {
 	public Integer getId() {
 		return id;
 	}
-	
+
 }
