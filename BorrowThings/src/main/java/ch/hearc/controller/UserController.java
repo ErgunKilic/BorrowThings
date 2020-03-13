@@ -3,6 +3,7 @@ package ch.hearc.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,8 @@ public class UserController {
 	UserRepository userRepository;
 	@Autowired 
 	RoleRepository roleRepository;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 //	@GetMapping("/")
 //	public String index(Model model) {
@@ -42,13 +45,7 @@ public class UserController {
 		
 	@PostMapping("/user/insert")
 	public String insertUser(@ModelAttribute User user, Model model) {	
-		
-//		System.out.println(roleId);
-//		Role roleTmp = roleRepository.findById().get();
-		
-//		Role roleTmp = roleRepository.findById(user.getRole().getId()).get();
-//		user.setRole(roleRepository.findById(user.getRole().getId()).get());
-//		user.setRole(roleTmp);
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userRepository.save(user);
 		
 		return "user-form";
