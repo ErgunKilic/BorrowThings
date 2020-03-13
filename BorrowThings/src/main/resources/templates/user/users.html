@@ -1,15 +1,37 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:th="http://www.thymeleaf.org"
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
 <head>
-<title>Welcome Security with Spring Boot!</title>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <title>BorrowThings</title>
 </head>
+
 <body>
-  <h1>Hello, the page is for Users!</h1>
-  <a style="color: blue" th:href="@{/}">Home</a>
-  <form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out" />
-  </form>
+  <table>
+    <caption>Users</caption>
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Username</th>
+        <th scope="col">Password</th>
+        <th scope="col">Enabled</th>
+        <th scope="col">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="user: ${users}">
+        <td th:text="${user.id}" />
+        <td th:text="${user.username}" />
+        <td th:text="${user.password}" />
+        <td th:text="${user.enabled}" />
+        <td th:text="${user.role.name}" />
+      </tr>
+    </tbody>
+  </table>
 </body>
+
 </html>

@@ -19,18 +19,18 @@ public class ItemController {
     @GetMapping("/item/all")
     public String getAll(Map<String, Object> model) {
         model.put("items", itemRepository.findAll());
-        return "items";
+        return "item/items";
     }
 
     @GetMapping("/item/create")
     public String roleForm(Model model) {
         model.addAttribute("item", new Item());
-        return "item-form";
+        return "item/item-form";
     }
 
     @PostMapping("/item/insert")
     public String insertRole(@ModelAttribute Item item, Model model) {
         itemRepository.save(item);
-        return "item-form";
+        return "item/item-form";
     }
 }
