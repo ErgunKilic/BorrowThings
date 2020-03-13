@@ -18,25 +18,19 @@ public class RoleController {
 	
 	@GetMapping("/role/all")
 	public  String getAll(Map<String, Object> model) {
-		
 		model.put("roles", roleRepository.findAll());
-		
-		return "roles";
+		return "role/roles";
 	}
 	
 	@GetMapping("/role/create")
 	public String roleForm(Model model) {
 		model.addAttribute("role", new Role());
-		
-		return "role-form";
+		return "role/role-form";
 	}
 		
 	@PostMapping("/role/insert")
 	public String insertRole(@ModelAttribute Role role, Model model) {
-			
 		roleRepository.save(role);
-		
-		return "role-form";
-		
+		return "role/role-form";
 	}
 }

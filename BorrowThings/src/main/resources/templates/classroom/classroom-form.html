@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Create classroom</title>
+</head>
+
+<body>
+    <h1>Create Classroom</h1>
+    <form action="#" th:action="@{/classroom/insert}" th:object="${classroom}" method="post">
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+
+</body>
+
+</html>
