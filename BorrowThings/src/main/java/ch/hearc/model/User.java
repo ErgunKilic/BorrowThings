@@ -14,14 +14,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 @Entity
 @Table(name="users")
+@TableGenerator(name="tab", initialValue=2)
 public class User {
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="tab")
 	@Column
-    private Integer id;
+    public Integer id;
 
 	@Column
 	private String username;
@@ -73,5 +75,9 @@ public class User {
 
 	public Integer getId() {
 		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 }

@@ -19,18 +19,18 @@ public class ClassroomController {
     @GetMapping("/classroom/all")
     public String getAll(Map<String, Object> model) {
         model.put("classrooms", classroomRepository.findAll());
-        return "classrooms";
+        return "classroom/classrooms";
     }
 
     @GetMapping("/classroom/create")
     public String roleForm(Model model) {
         model.addAttribute("classrom", new Classroom());
-        return "classroom-form";
+        return "classroom/classroom-form";
     }
 
     @PostMapping("/classroom/insert")
     public String insertRole(@ModelAttribute Classroom classroom, Model model) {
         classroomRepository.save(classroom);
-        return "classroom-form";
+        return "classroom/classroom-form";
     }
 }
