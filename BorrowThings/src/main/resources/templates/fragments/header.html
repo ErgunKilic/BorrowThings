@@ -10,11 +10,15 @@
 </head>
 
 <body>
-    <nav class="nav blue darken-4" th:fragment="header">
+    <nav class="nav teal lighten-1" th:fragment="header">
         <div class="nav-wrapper">
             <a href="#" class="brand-logo">BorrowThings</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a th:href="@{/user}">User page</a></li>
+                <li><a th:href="@{/user/all}">User page</a></li>
+                <li><a th:href="@{/role/all}">roll page</a></li>
+                <li><a th:href="@{/classroom/all}">classroom page</a></li>
+                <li><a th:href="@{/item/all}">item page</a></li>
+
                 <li><a th:href="@{/admin}">Admin Page</a></li>
             </ul>
         </div>
