@@ -13,7 +13,26 @@
 <body>
     <div th:replace="~{fragments/header :: header}">Header</div>
     <div class="container">
-        
+        <table class="table">
+            <caption>Classrooms</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="classroom: ${classrooms}">
+                    <td th:text="${classroom.id}" />
+                    <td th:text="${classroom.name}" />
+                    <td>
+                        <a th:href="@{/classrooom/{id}(id = ${classroom.id})}">Modify</a>
+                        <a th:href="@{/classrooom/delete/{id}(id = ${classroom.id})}">Delete</a>
+                    <td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 
