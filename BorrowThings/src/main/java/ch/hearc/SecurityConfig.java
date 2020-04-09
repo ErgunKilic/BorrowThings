@@ -22,17 +22,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
     auth.jdbcAuthentication().dataSource(dataSource)
         .usersByUsernameQuery("select username,password, enabled from users where username=?")
-        .authoritiesByUsernameQuery("select username, roles.name from users "
-        		+ "inner join roles ON users.role_id = roles.id where username=?")
+        .authoritiesByUsernameQuery("select users.username, roles.name from users "
+        		+ "inner join roles ON users.role_id = roles.id where users.username=?")
         .passwordEncoder(new BCryptPasswordEncoder());
   }
  
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.authorizeRequests().antMatchers("/").authenticated().antMatchers("/admin").hasRole("ADMIN")
-        .anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll().and().logout()
-        .permitAll();
-        http.exceptionHandling().accessDeniedPage("/403");
+    http.authorizeRequests().antMatchers("/register", "/user/insert").permitAll().antMatchers("/admin", "/user/update").hasRole("ADMIN")
+        .anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll().and().logout().permitAll();
+    http.exceptionHandling().accessDeniedPage("/403");
   }
   
   @Bean

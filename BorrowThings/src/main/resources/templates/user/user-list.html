@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Username</th>
+				<th scope="col">Enabled</th>
+				<th scope="col">Role<th>
+				<th scope="col">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user: ${users}">
+				<td th:text="${user.id}"/>
+				<td th:text="${user.username}" />
+				<td th:text="${user.enabled}" />
+				<td th:object="${user.role}" th:text="*{name}" />
+				<td>
+					<a th:href="@{/user/{id}(id = ${user.id})}">Modify</a>
+    			<td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
