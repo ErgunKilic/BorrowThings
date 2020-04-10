@@ -13,6 +13,7 @@
 <body>
     <h1>Create Classroom</h1>
     <form action="#" th:action="@{/classroom/insert}" th:object="${classroom}" method="post">
+        <p>Name: <input type="text" th:field="*{name}" /></p>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
 

@@ -9,24 +9,25 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	<title>BorrowThings</title>
 </head>
+
 <body>
-
-	<table class="table">
-		<caption>Roles</caption>
-
-		<thead>
-			<tr>
-				<th scope="col">Id</th>
-				<th scope="col">Name</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="role: ${roles}">
-				<td th:text="${role.id}" />
-				<td th:text="${role.name}" />
-			</tr>
-		</tbody>
-	</table>
-
+	<div th:replace="~{fragments/header :: header}">Header</div>
+	<div class="container">
+		<table class="table">
+			<caption>Roles</caption>
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Name</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="role: ${roles}">
+					<td th:text="${role.id}" />
+					<td th:text="${role.name}" />
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>

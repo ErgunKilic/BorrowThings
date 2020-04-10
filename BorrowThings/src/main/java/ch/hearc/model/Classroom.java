@@ -18,6 +18,10 @@ public class Classroom {
     @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<ClassroomItem> classroomItems = new HashSet<>();
 
+    public Integer getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }

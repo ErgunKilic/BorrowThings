@@ -11,7 +11,35 @@
 </head>
 
 <body>
-    Coucou item
+    <div th:replace="~{fragments/header :: header}">Header</div>
+    <div class="container">
+        <table class="table">
+            <caption>Items</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item: ${items}">
+                    <td th:text="${item.id}" />
+                    <td th:text="${item.name}" />
+                    <td th:text="${item.description}" />
+                    <td th:text="${item.stock}" />
+                    <td>
+                        <a th:href="@{/item/{id}(id = ${item.id})}">Modify</a>
+                        <a th:href="@{/item/delete/{id}(id = ${item.id})}">Delete</a>
+                    <td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 </body>
 
 </html>

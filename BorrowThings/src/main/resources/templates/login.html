@@ -1,26 +1,44 @@
 <!DOCTYPE html>
-<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:th="http://www.thymeleaf.org"
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
 <head>
   <title>Welcome Security with Spring Boot!</title>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <link rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-  <script
-    src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script
-    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <title>BorrowThings</title>
+
 </head>
-<body class="container" style="margin:50px">
-  <div class="row col-sm-6" 
-        style="border: 1px ridge #003312; padding:20px; float: none; margin: 0 auto;">
-    <h5 class="text-center" style="font-size: 25px">Sign In</h5>
-    <div th:if="${param.error}">
-      <p style="color: red">UserName or PassWord is wrong. Please
-        check again!</p>
-  
+
+<body>
+  <div class="container">
+    <div class="row">
+      <blockquote th:if="${param.logout}">
+        Logged out.
+      </blockquote>
+      <blockquote th:if="${param.error}">
+        Username or Password is wrong. Please check again!
+      </blockquote>
+
+      <!--<form th:action="@{/login}" method="post" class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <input placeholder="Enter Username" id="username" type="text" class="validate" name="username">
+            <label for="username">Username</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input placeholder="Enter Password" id="password" type="password" class="validate" name="password">
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+      </form>-->
     </div>
     <div th:if="${param.logout}">
       <h1 style="color: blue">Logged out.</h1>
@@ -39,4 +57,5 @@
     </form>
   </div>
 </body>
+
 </html>
