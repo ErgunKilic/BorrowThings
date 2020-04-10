@@ -27,8 +27,6 @@ public class UserController {
 	@GetMapping("/register")
 	public String userForm(Model model) {
 		User user = new User();
-		user.setEnabled(true);
-		user.setRole(roleRepository.findById(3).get());
 		model.addAttribute("user", user);
 		model.addAttribute("roles", roleRepository.findAll());	
 		return "register";
@@ -52,6 +50,8 @@ public class UserController {
 	@PostMapping("/user/insert")
 	public String userInsert(@ModelAttribute User user, Model model) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setEnabled(true);
+		user.setRole(roleRepository.findById(3).get());
 		userRepository.save(user);
 		return "register";
 	}

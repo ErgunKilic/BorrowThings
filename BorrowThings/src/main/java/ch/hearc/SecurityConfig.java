@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
  
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.authorizeRequests().antMatchers("/register", "/user/insert").permitAll().antMatchers("/admin", "/user/update").hasRole("ADMIN")
+    http.authorizeRequests().antMatchers("/register", "/user/insert").permitAll().antMatchers("/admin", "/user/all","/user/update").hasRole("ADMIN")
         .anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll().and().logout().permitAll();
     http.exceptionHandling().accessDeniedPage("/403");
   }
