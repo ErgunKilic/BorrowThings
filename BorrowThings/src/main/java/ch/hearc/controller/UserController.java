@@ -46,14 +46,21 @@ public class UserController {
 		model.addAttribute("roles", roleRepository.findAll());
         return "user/user-update";
 	}
+    
+    @GetMapping("/user/role/{id}")
+    public String usersRole(Model model, @PathVariable(value="id") int id) {
+    	Role role = roleRepository.findById(id).get();
+    	model.addAttribute("users", role.getUsers());
+        return "user/user-list";
+	}
 		
 	@PostMapping("/user/insert")
-	public String userInsert(@ModelAttribute User user, Model model) {
+	public RedirectView userInsert(@ModelAttribute User user, Model model) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setEnabled(true);
 		user.setRole(roleRepository.findById(3).get());
 		userRepository.save(user);
-		return "register";
+		return new RedirectView("/");
 	}
 	
 	@PostMapping("/user/update")

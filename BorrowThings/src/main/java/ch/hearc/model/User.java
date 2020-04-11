@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -34,8 +35,8 @@ public class User {
 	@Column
 	private Boolean enabled;
 	
-	@OneToOne
-	@JoinColumn(name = "role_id", referencedColumnName = "id")	
+	@ManyToOne
+	@JoinColumn(name = "role_id", nullable=false)	
 	private Role role;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
