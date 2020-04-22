@@ -1,18 +1,12 @@
-/* pipeline {
+pipeline {
     agent any
     environment {
-        SPRING_DATASOURCE_URL='jdbc:mysql://157.26.83.80:3306/spring_db_2020?useSSL=false'
+        SPRING_DATASOURCE_URL='jdbc:mysql://157.26.83.80:3306/spring_db_2020'
         SPRING_DATASOURCE_USERNAME  = credentials('SPRING_DATASOURCE_USERNAME')
         SPRING_DATASOURCE_PASSWORD = credentials('SPRING_DATASOURCE_PASSWORD')
         JDC_ENV_TEST = credentials('JDC_ENV_TEST')
     }
     stages {
-        stage('Echo Sample') {
-            steps{
-                echo "ECHO SAMPLE"
-                sh '(printenv)'
-            }
-        }
         stage('Build') {
             agent {
               docker {
@@ -20,7 +14,7 @@
               }
             }
             steps {
-			sh '(cd ./SpringTestDemo/; mvn clean package)'
+			sh '(cd ./BorrowThings/; mvn clean package)'
 		stash name: "app", includes: "**"
             }
         }
@@ -32,8 +26,8 @@
             }
             steps {
 		    unstash "app"
-			sh '(cd ./SpringTestDemo/; mvn clean test)'
-		    sh '(cd ./SpringTestDemo/; mvn sonar:sonar)'
+			sh '(cd ./BorrowThings/; mvn clean test)'
+		    sh '(cd ./BorrowThings/; mvn sonar:sonar -Dsonar.projectKey=ErgunKilic_BorrowThings -Dsonar.organization=ergunkilic -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=e6471701f468743ac8a3a5df6bf848e040e728d6)'
 	    }
         }
         stage('IntegrationTest'){
@@ -45,7 +39,7 @@
 		}
 		   steps {
 			unstash "app"
-			sh 'java -jar ./SpringTestDemo/target/SpringTestDemo-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
+			sh 'java -jar ./BorrowThings/target/BorrowThings-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
 			sh 'sleep 30'
 			sh 'chmod +x ./runTest.sh'
 			sh './runTest.sh'
@@ -60,31 +54,4 @@
         }
     }
 }
- */
 
-/* DEMO sample */
- pipeline {
-    agent any
-    stages {
-        stage('Build') {
-            steps{
-                echo "Build"
-            }
-        }
-        stage('Print all environnement'){
-            steps{
-                sh '(printenv)'
-            }
-        }
-        stage('Test') {
-            steps{
-                echo "Build"
-            }
-        }
-        stage('Deploy') {
-            steps{
-                echo "Build"
-            }
-        }
-    }
-}
