@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        SPRING_DATASOURCE_URL='jdbc:mysql://157.26.83.80:3306/spring_db_2020'
+        SPRING_DATASOURCE_URL='jdbc:mysql://157.26.83.85:3306/spring_db_2020'
         SPRING_DATASOURCE_USERNAME  = credentials('SPRING_DATASOURCE_USERNAME')
         SPRING_DATASOURCE_PASSWORD = credentials('SPRING_DATASOURCE_PASSWORD')
         JDC_ENV_TEST = credentials('JDC_ENV_TEST')
@@ -47,11 +47,14 @@ pipeline {
 		    }
         }
     }
-       post {
+    post {
         always {
             echo 'always clean up'
             deleteDir()
         }
+    }
+    options {
+        disableConcurrentBuilds()
     }
 }
 
