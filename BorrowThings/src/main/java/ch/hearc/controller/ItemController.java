@@ -1,17 +1,30 @@
 package ch.hearc.controller;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
+import javax.validation.Valid;
 
+import ch.hearc.ResourceNotFoundException;
 import ch.hearc.model.*;
+import ch.hearc.service.ItemService;
 
 @Controller
 public class ItemController {
@@ -22,9 +35,33 @@ public class ItemController {
     @Autowired
     ClassroomRepository classroomRepository;
 
+    @Autowired
+    private ItemService itemService;
+
     @GetMapping("/item/all")
     public String getAll(Map<String, Object> model) {
+    //@RequestMapping(value = "/item/all", method = RequestMethod.GET)
+    //public String listItems(
         model.put("items", itemRepository.findAll());
+        /*
+        Model model, 
+        @RequestParam("page") Optional<Integer> page, 
+        @RequestParam("size") Optional<Integer> size) {
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(1);
+ 
+        Page<Item> itemPage = itemService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
+ 
+        model.addAttribute("itemPage", itemPage);
+ 
+        int totalPages = itemPage.getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                .boxed()
+                .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }*/
+
         return "item/items";
     }
 
@@ -37,10 +74,19 @@ public class ItemController {
     }
 
     @PostMapping("/item/insert")
-    public String insertItem(@ModelAttribute Item item, Model model) {
+    public RedirectView insertItem(@ModelAttribute Item item, Model model) {
         itemRepository.save(item);
-        return "item/item-form";
+        return new RedirectView("/item/all");
     }
+
+    /*@PostMapping("/classroom/{classroomId}/items")
+    public RedirectView createItem(@PathVariable(value = "classroomId") Integer classroomId, @Valid @RequestBody Item item) {
+        classroomRepository.findById(classroomId).map(classroom -> {
+            item.setClassroom(classroom);
+            return itemRepository.save(item);
+        }).orElseThrow(() -> new ResourceNotFoundException("ClassroomId " + classroomId + " not found"));
+        return new RedirectView("/item/all");
+    }*/
 
     //update 
 
@@ -57,7 +103,7 @@ public class ItemController {
         itemChange.setName(item.getName());
         itemChange.setDescritpion(item.getDescription());
         itemChange.setStock(item.getStock());
-
+        itemChange.setClassroom(item.getClassroom());
         itemRepository.save(itemChange);
         return new RedirectView("/item/all");
     }

@@ -22,10 +22,23 @@ public class Item {
     @Column
     private Integer stock;
 
-    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<UserItem> userItems = new HashSet<>();
-    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<ClassroomItem> classroomItems = new HashSet<>();
+    //@OneToMany(mappedBy = "item", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //private Set<UserItem> userItems = new HashSet<>();
+    //@OneToMany(mappedBy = "item", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //private Set<ClassroomItem> classroomItems = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "classroom_id", nullable = false)
+    private Classroom classroom;
+
+
+    public Classroom getClassroom() {
+        return classroom;
+    }
+
+    public void setClassroom(Classroom classroom) {
+        this.classroom = classroom;
+    }
 
     public Integer getId() {
         return id;

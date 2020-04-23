@@ -16,10 +16,20 @@ public class Classroom {
     @Column
     private String name;
 
-    @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<ClassroomItem> classroomItems = new HashSet<>();
+    //@OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //private Set<ClassroomItem> classroomItems = new HashSet<>();
 
+    @OneToMany(mappedBy = "classroom")
+    private Set<Item> items;
 
+    public Set<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Item> items) {
+        this.items = items;
+    }
+    
     public Integer getId() {
         return id;
     }

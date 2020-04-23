@@ -1,37 +1,46 @@
 <!DOCTYPE html>
-<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html>
 
 <head>
+    <meta charset="UTF-8">
+    <title>Classroom Update</title>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <title>BorrowThings</title>
+
     <script>
         $(document).ready(function () {
             $('select').formSelect();
         });
     </script>
+
 </head>
 
 <body>
     <div th:replace="~{fragments/header :: header}">Header</div>
 
     <div class="container">
-        <form action="#" th:action="@{/item/insert}" th:object="${item}" method="post">
-            <p>Name: <input type="text" th:field="*{name}" /></p>
+        <form action="#" th:action="@{/item/update}" th:object="${item}" method="post">
+            <input type="hidden" th:field="*{id}" th:value="${item.id}" />
+
+            <p>Name : <input type="text" th:field="*{name}" /></p>
             <p>Description: <textarea name="description" th:field="*{description}"></textarea></p>
             <p>Stock: <input type="number" th:field="*{stock}" step="1" /></p>
             <p><select th:field="*{classroom.id}" name="classroomId">
                     <option th:each="classroom: ${classrooms}" th:value="${classroom.id}"
                         th:text="${classroom.name}"></option>
                 </select></p>
-            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+
+            <p>
+                <input type="submit" class="btn btn-primary" value="Apply Changes" />
+                <a href="/item/all">Cancel</a>
+            </p>
         </form>
     </div>
-
 
 </body>
 
