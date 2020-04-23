@@ -18,7 +18,7 @@ pipeline {
 		stash name: "app", includes: "**"
             }
         }
-	stage('QualityTest') {
+	    stage('QualityTest') {
             agent {
               docker {
                image 'maven:3.6.3-jdk-11-slim'
@@ -28,23 +28,23 @@ pipeline {
 		    unstash "app"
 			sh '(cd ./BorrowThings/; mvn clean test)'
 		    sh '(cd ./BorrowThings/; mvn sonar:sonar -Dsonar.projectKey=ErgunKilic_BorrowThings -Dsonar.organization=ergunkilic -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=e6471701f468743ac8a3a5df6bf848e040e728d6)'
-	    }
+	        }
         }
         stage('IntegrationTest'){
-		agent{
-			docker{
-				image 'lucienmoor/katalon-for-jenkins:latest'
-				args '-p 8888:8080'
-			}
-		}
-		   steps {
-			unstash "app"
-			sh 'java -jar ./BorrowThings/target/BorrowThings-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
-			sh 'sleep 30'
-			sh 'chmod +x ./runTest.sh'
-			sh './runTest.sh'
-			cleanWs()
-		    }
+            agent{
+                docker{
+                image 'lucienmoor/katalon-for-jenkins:latest'
+                args '-p 8888:8080'
+                }
+            }
+            steps {
+                unstash "app"
+                sh 'java -jar ./BorrowThings/target/BorrowThings-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
+                sh 'sleep 30'
+                sh 'chmod +x ./runTest.sh'
+                sh './runTest.sh'
+                cleanWs()
+            }
         }
     }
     post {
