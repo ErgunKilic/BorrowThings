@@ -28,9 +28,5 @@ public class UserItem implements Serializable {
     @Column
     private Date borrowDate;
 
-    public UserItem(User user, Date borrowDate) {
-        this.user = user;
-        this.borrowDate = borrowDate;
-    }
  
 }

@@ -18,7 +18,7 @@ public class UserItemController {
     @Autowired
     UserRepository userRepository;
     @Autowired
-    RoleRepository roleRepository;
+    ItemRepository itemRepository;
     @Autowired
     UserItemRepository userItemRepository;
 
@@ -33,8 +33,8 @@ public class UserItemController {
     @GetMapping("/userItem/create")
     public String userBorrowForm(Model model) {
         model.addAttribute("users", userRepository.findAll());
-        model.addAttribute("roles", roleRepository.findAll());
-
+        model.addAttribute("items", itemRepository.findAll());
+        model.addAttribute("userItem", new UserItem()); 
         return "userItem/userItem-form";
     }
 
