@@ -10,10 +10,11 @@
   <title>BorrowThings</title>
 </head>
 <body>
-  <h1>Hello, the page is for Admin!</h1>
-  <a style="color: blue" th:href="@{/}">Home</a>
-  <form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out" />
-  </form>
+  <div th:replace="~{fragments/header :: header}">Header</div>
+
+  <div class="container">
+       <h2>Hello, the page is coming soon</h2>
+  </div>
+
 </body>
 </html>

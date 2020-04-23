@@ -36,7 +36,7 @@ public class UserController {
     public String usersAll(Map<String, Object> model) {
         model.put("users", userRepository.findAll());
         model.put("userForm", new User());
-        return "user/user-list";
+        return "user/users";
 	}
 	
     @GetMapping("/user/{id}")
@@ -51,7 +51,7 @@ public class UserController {
     public String usersRole(Model model, @PathVariable(value="id") int id) {
     	Role role = roleRepository.findById(id).get();
     	model.addAttribute("users", role.getUsers());
-        return "user/user-list";
+        return "user/users";
 	}
 		
 	@PostMapping("/user/insert")

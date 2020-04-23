@@ -22,6 +22,8 @@
           <th scope="col">Password</th>
           <th scope="col">Enabled</th>
           <th scope="col">Role</th>
+          <th scope="col">Action</th>
+
         </tr>
       </thead>
       <tbody>
@@ -31,9 +33,13 @@
           <td th:text="${user.password}" />
           <td th:text="${user.enabled}" />
           <td th:text="${user.role.name}" />
+          <td>
+            <a class="btn" th:href="@{/user/{id}(id = ${user.id})}">Modify</a>
+          <td>
         </tr>
       </tbody>
     </table>
+
   </div>
 </body>
 

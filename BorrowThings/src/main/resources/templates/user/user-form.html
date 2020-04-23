@@ -9,18 +9,20 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	<title>BorrowThings</title>
 </head>
-<body>
 
-	<h1>Form</h1>
-    <form action="#" th:action="@{/user/insert}" th:object="${user}" method="post">
-    	<p>Username : <input type="text" th:field="*{username}" /></p>
-    	<p>Password : <input type="password" th:field="*{password}" /></p>
-    	<p>Enabled : <input type="checkbox" th:field="*{enabled}" /></p>
-    	<p><select th:field="*{role.id}">
-		    <option th:each="role: ${roles}" th:value="${role.id}" th:text="${role.name}"></option>
-		</select></p>
-        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-    </form>
-    
+<body>
+	<form action="#" th:action="@{/user/insert}" th:object="${user}" method="post">
+		<p>Username : <input type="text" th:field="*{username}" /></p>
+		<p>Password : <input type="password" th:field="*{password}" /></p>
+		<p>Enabled : <input type="checkbox" class="filled-in"  th:field="*{enabled}" /></p>
+
+
+		<p><select th:field="*{role.id}">
+				<option th:each="role: ${roles}" th:value="${role.id}" th:text="${role.name}"></option>
+			</select></p>
+		<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+	</form>
+
 </body>
+
 </html>
