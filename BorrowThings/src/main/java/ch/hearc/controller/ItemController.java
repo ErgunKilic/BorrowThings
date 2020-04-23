@@ -1,30 +1,17 @@
 package ch.hearc.controller;
 
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
-import javax.validation.Valid;
-
-import ch.hearc.ResourceNotFoundException;
 import ch.hearc.model.*;
-import ch.hearc.service.ItemService;
 
 @Controller
 public class ItemController {
@@ -34,9 +21,6 @@ public class ItemController {
 
     @Autowired
     ClassroomRepository classroomRepository;
-
-    @Autowired
-    private ItemService itemService;
 
     @GetMapping("/item/all")
     public String getAll(Map<String, Object> model) {

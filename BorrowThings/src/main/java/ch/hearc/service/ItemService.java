@@ -3,7 +3,6 @@ package ch.hearc.service;
 import java.util.Collections;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -11,7 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import ch.hearc.model.Item;
-import ch.hearc.model.ItemRepository;
 
 @Service
 public class ItemService {

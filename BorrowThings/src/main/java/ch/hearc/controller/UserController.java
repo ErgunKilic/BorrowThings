@@ -22,6 +22,8 @@ public class UserController {
 	@Autowired 
 	RoleRepository roleRepository;
 	@Autowired
+	UserItemRepository userItemRepository;
+	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
 	@GetMapping("/register")
@@ -71,4 +73,5 @@ public class UserController {
 		userRepository.save(userChange);
 		return new RedirectView("/user/all");
 	}
+
 }

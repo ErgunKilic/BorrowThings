@@ -1,6 +1,5 @@
 package ch.hearc.model;
 
-import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
