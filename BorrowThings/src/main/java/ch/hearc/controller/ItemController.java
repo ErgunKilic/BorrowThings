@@ -42,11 +42,13 @@ public class ItemController {
         return "item/item-form";
     }
 
+    //update 
+
     @GetMapping("/item/{id}")
-    public String usersAll(Model model, @PathVariable(value = "id") int id) {
-        Classroom classroom = classroomRepository.findById(id).get();
-        model.addAttribute("classroom", classroom);
-        return "classroom/classroom-update";
+    public String itemGet(Model model, @PathVariable(value = "id") int id) {
+        Item item = itemRepository.findById(id).get();
+        model.addAttribute("item", item);
+        return "item/item-update";
     }
 
     @PostMapping("/item/update")
@@ -57,6 +59,14 @@ public class ItemController {
         itemChange.setStock(item.getStock());
 
         itemRepository.save(itemChange);
+        return new RedirectView("/item/all");
+    }
+
+
+    // Delete 
+    @PostMapping("/item/delete/{id}")
+    public RedirectView itemDelete(Model model, @PathVariable(value = "id") int id) {
+        itemRepository.deleteById(id);
         return new RedirectView("/item/all");
     }
 }

@@ -27,12 +27,20 @@
                     <td th:text="${classroom.id}" />
                     <td th:text="${classroom.name}" />
                     <td>
-                        <a th:href="@{/classrooom/{id}(id = ${classroom.id})}">Modify</a>
-                        <a th:href="@{/classrooom/delete/{id}(id = ${classroom.id})}">Delete</a>
+                        <p>
+                        <a class="btn" th:href="@{/classroom/{id}(id = ${classroom.id})}">Modify</a>
+                        </p>
+
+                        <form action="#" th:action="@{/classroom/delete/{id}(id = ${classroom.id})}" method="post">
+                            <input type="submit" class="btn btn-danger" value="Delete" />
+                        </form>
+
                     <td>
                 </tr>
             </tbody>
         </table>
+        <a btn-flat th:href="@{/classroom/create}">Create a classroom</a>
+
     </div>
 </body>
 

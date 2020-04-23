@@ -10,11 +10,15 @@
     <title>BorrowThings</title>
 </head>
 <body>
-	<h1>Create Role</h1>
-    <form action="#" th:action="@{/role/insert}" th:object="${role}" method="post">
-    	<p>Name: <input type="text" th:field="*{name}" /></p>
-        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-    </form>
-    
+    <div th:replace="~{fragments/header :: header}">Header</div>
+
+    <div class="container">
+        <h1>Create Role</h1>
+        <form action="#" th:action="@{/role/insert}" th:object="${role}" method="post">
+            <p>Name: <input type="text" th:field="*{name}" /></p>
+            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        </form>
+    </div>
+
 </body>
 </html>

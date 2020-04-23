@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.view.RedirectView;
 import ch.hearc.model.*;
 
 @Controller
@@ -29,8 +30,8 @@ public class RoleController {
 	}
 		
 	@PostMapping("/role/insert")
-	public String insertRole(@ModelAttribute Role role, Model model) {
+	public RedirectView insertRole(@ModelAttribute Role role, Model model) {
 		roleRepository.save(role);
-		return "role/role-form";
+		return new RedirectView("/role/all");
 	}
 }

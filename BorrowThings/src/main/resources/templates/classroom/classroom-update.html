@@ -1,26 +1,31 @@
 <!DOCTYPE html>
-<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html>
 
 <head>
+    <meta charset="UTF-8">
+    <title>Classroom Update</title>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <title>BorrowThings</title>
+
 </head>
 
 <body>
     <div th:replace="~{fragments/header :: header}">Header</div>
 
     <div class="container">
-        <h1>Create Classroom</h1>
-        <form action="#" th:action="@{/classroom/insert}" th:object="${classroom}" method="post">
-            <p>Name: <input type="text" th:field="*{name}" /></p>
-            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        <form action="#" th:action="@{/classroom/update}" th:object="${classroom}" method="post">
+            <input type="hidden" th:field="*{id}" th:value="${classroom.id}" />
+            
+            <p>Name : <input type="text" th:field="*{name}" /></p>
+            <p>
+                <input type="submit" class="btn btn-primary" value="Apply Changes" />
+                <a href="/classroom/all">Cancel</a>
+            </p>
         </form>
     </div>
-
 
 </body>
 

@@ -6,9 +6,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "items")
+@TableGenerator(name = "tab", initialValue = 1)
 public class Item {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "tab")
     @Column
     private Integer id;
 
@@ -28,6 +29,10 @@ public class Item {
 
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {

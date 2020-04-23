@@ -34,26 +34,34 @@ public class ClassroomController {
     }
 
     @PostMapping("/classroom/insert")
-    public String insertClassroom(@ModelAttribute Classroom classroom, Model model) {
+    public RedirectView insertClassroom(@ModelAttribute Classroom classroom, Model model) {
         classroomRepository.save(classroom);
-        return "classroom/classroom-form";
+        return new RedirectView("/classroom/all");
     }
 
 
     // Update
 
     @GetMapping("/classroom/{id}")
-    public String usersAll(Model model, @PathVariable(value = "id") int id) {
+    public String classroomGet(Model model, @PathVariable(value = "id") int id) {
         Classroom classroom = classroomRepository.findById(id).get();
         model.addAttribute("classroom", classroom);
         return "classroom/classroom-update";
     }
 
     @PostMapping("/classroom/update")
-    public RedirectView userUpdate(@ModelAttribute Classroom classroom, Model model) {
+    public RedirectView classroomUpdate(@ModelAttribute Classroom classroom, Model model) {
         Classroom classroomChange = classroomRepository.findById(classroom.getId()).get();
         classroomChange.setName(classroom.getName());
         classroomRepository.save(classroomChange);
+        return new RedirectView("/classroom/all");
+    }
+
+
+    // Delete
+    @PostMapping("/classroom/delete/{id}")
+    public RedirectView classroomDelete(Model model, @PathVariable(value = "id") int id) {
+        classroomRepository.deleteById(id);
         return new RedirectView("/classroom/all");
     }
 }
